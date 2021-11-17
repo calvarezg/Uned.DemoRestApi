@@ -28,8 +28,9 @@ namespace DemoMediacion
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DemoMediacion", Version = "v1" });
             });
 
+            var connectionString = Configuration.GetConnectionString("Default");
             services.AddDbContext<ApplicationDatabaseContext>(options=> {
-                options.UseInMemoryDatabase("test");
+                options.UseSqlServer(connectionString);
             });
             services.AddScoped<Repository>();
         }

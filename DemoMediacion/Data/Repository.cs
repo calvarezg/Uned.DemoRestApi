@@ -28,7 +28,9 @@ namespace DemoMediacion.Data
 
         public Guitar Find(int id)
         {
-            return db.Guitars.Find(id);
+            var guitars = db.Guitars.ToList();
+            var guitar = guitars.Where(g => g.Id.Equals(id)).FirstOrDefault();
+            return guitar;// db.Guitars.Find(id);
         }
 
         public void Update(Guitar guitar)
